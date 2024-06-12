@@ -1,2 +1,8 @@
 # parama_web
-Scripts and web pages for PARAMA web server developed in 2018
+**PARAMA** (PAuling-Corey inspired RAMAchandran maps) webserver, previously hosted at (http://pauling.mbu.iisc.ac.in/PARAMA), was developed by me to generate bond-geometry specific Ramachandran maps for every residue in a user given protein. The work was published in **Ravikumar, A., Ramakrishnan, C., & Srinivasan, N. (2019). Stereochemical assessment of (Φ, Ψ) outliers in protein structures using bond geometry-specific Ramachandran steric-maps. Structure, 27(12), 1875-1884**.
+
+Given a protein PDB file as input, for every residue in the structure (or user mentioned residues), the webserver would extract the two-linked peptide unit containing the residue, rotate the (Φ, Ψ) torsion angles through every possible integer value, check for short contacts within the two-linked peptide unit and report if the (Φ, Ψ) value is allowed or disallowed. One could also view the bond-geometry specific Ramachandran maps for every residue. I pre-generated these maps for nearly 200,000 residues in super-high resolution protein structures in PDB and stored it in a database. If the user-submitted protein is part of the database, the results would be made available immediately. Otherwise, the map generation would run the in the background and an email would be sent to the user when the results are ready.
+
+Unfortunately the webserver became non-functional since the lab in which it was developed got dismantled. 
+
+The main (Φ, Ψ) rotation and checking for short contacts is performed in the scripts *protein_pep_unit_rotation_residuewise.py", *Ala_map_generator.py* and *Gly_map_generator.py*.
