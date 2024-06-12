@@ -1,0 +1,23 @@
+create table structures (
+pdb_id char(4) NOT NULL,
+chain_id char(1) NOT NULL,
+resolution float(4,2),
+Rwork float(4,2),
+Rfree float(4,2),
+PRIMARY KEY (pdb_id,chain_id)
+);
+
+create table residues (
+pdb_id char(4) NOT NULL,
+chain_id char(1) NOT NULL,
+resname char(3),
+resnumber int,
+phi int,
+psi int,
+apd char(1),
+PRIMARY KEY (pdb_id,chain_id,resname,resnumber),
+FOREIGN KEY fk_pdbid(pdb_id)
+REFERENCES structures(pdb_id),
+FOREIGN KEY fk_pdbid(chain_id)
+REFERENCES structures(chain_id)
+);

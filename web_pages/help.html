@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bond-parameter specific Ramachandran maps </title>
+<link rel="stylesheet" type = "text/css" href = "parama.css" media = " all" />
+<style>
+td { border: 1px solid #ddd; padding:8px; background-color: #f2f2f2; text-align:center;}
+th {background-color: #3399ff;border: 1px solid black;padding:8px;text-align:center;}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+</head>
+<body>
+<div class="header">
+	<img src="hide_square.png" align="left" style="width:120px;height:120px;"/>
+	<img src="IISc_logo.png" align="right" style="width:120px;height:120px;"/>
+	<h2 style="color:#3399ff;">BORAM</h2>
+	<p style="font-size:25px;font-family: Verdana,Geneva, sans-serif; text-align:center;color:white;"><b style="color:#3399ff;">Bo</b>nd-parameter specific <b style="color:#3399ff;">Ra</b>machandran <b style="color:#3399ff;">M</b>aps </p>
+</div>
+<div class="topnav">
+	<a href="index.html">Home</a>
+	<a href="about.html">About BoRaM</a>
+	<a href="help.html">Help</a>
+	<a href="publication.html">Publication</a>
+	<a href="contact.html" style="float:right">Contact Us</a>
+</div>
+<div class="row">
+	<div class="rightcolumn">
+		<br>
+		<h3>Help</h3>
+		<h4>1.&nbsp;Submitting a job</h4>
+		<p>The user can submit a single protein structure in PDB format in the Home page, either by entering a valid PDB ID or by uploading a structure in PDB format (with .pdb as file extension). BoRaM will only work on one chain of the structure at a time and hence, chain ID must be entered. If not, the first chain in the structure will be taken as default. If it is a structure with multiple models, the first model will be considered for analysis.</p> 
+		<p>The user can choose to either generate maps for all the non-proline residues in the structure or only specific residues. If the latter option is chosen, the preferred residue numbers must be entered as a comma separated list in the text field that appears upon choosing this option.</p>
+		<p>Note that the positions of backbone hydrogen atoms are required for the generation of Ramachandran maps. Hence please ensure that they are available in the PDB file. For residues which don't have the hydrogen atoms, maps will not be generated. </p>
+		<h4>2.&nbsp;Viewing Results</h4>
+		<p>If the protein structure that has been submitted is available in BoRaM database, the results will be immediately shown as a table, where each row corresponds to a residue and links to the bond-parameter specific map and the corresponding data file is provided. The table also indicates whether each residue is allowed or disallowed according to its Ramachandran map. If the structure is not present in database, the user will be asked to enter his/her email address, where the results will be sent. The time it takes for the results to be sent depends upon the number of residues for which maps have to be generated. Generating map for a single residue takes about 30 seconds.</p>
+		<p style="text-align:center;"><img src="2vb1_A_21_rmap.png" style="width:350px;height:325px; border:2px solid black;" /></p>
+		<p>This image is a sample map of a residue that will be generated as output. The green regions on the map denote the fully allowed conformations and off-white regions correspond to partially allowed conformations. The red point denotes the (&straightphi;-&psi;) value in the protein structure for that residue. In this example, (&straightphi;-&psi;) value in the crystal structure falls in partially allowed region of that residue's bond-parameter specific map.</p>
+		<p> The link to data corresponding to the generated map is also provided. This is a comma separated list file in which against every integral (&straightphi;-&psi;) value, its conformational accessibility is indicated; 0 means disallowed, 1 means fully allowed and 2 means partially allowed. </p><br><br><br><br>
+	</div>
+</div>
+</body>
+</html>

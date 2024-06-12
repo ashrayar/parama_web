@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bond-parameter specific Ramachandran maps </title>
+<link rel="stylesheet" type = "text/css" href = "parama.css" media = " all" />
+<style>
+td { border: 1px solid #ddd; padding:8px; background-color: #f2f2f2; text-align:center;}
+th {background-color: #3399ff;border: 1px solid black;padding:8px;text-align:center;}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<script type="text/javascript">
+function residueOption(){
+	var x=document.getElementById('residue_option');
+	x.style.display="block";
+
+}
+function proteinOption(){
+	var x=document.getElementById('residue_option');
+	x.style.display="none";
+	document.getElementById('residues').value=""
+}
+function validateForm() {
+var x = document.getElementById("pdb_id").value;
+var y = document.getElementById("pdb_file").value;
+var chain = document.getElementById("chain_id").value;
+if (x=="" && y=="")
+{
+	alert("Either PDB ID must be entered or PDB file must be uploaded");
+	return false;
+}
+if (chain == ""){
+	var option=confirm("Note : You have not entered any Chain ID. The first chain in the structure will be considered for analysis. Press OK to continue or Cancel to enter chain ID");
+	return option
+}
+var res=document.getElementById("residue_option");
+if(res.style.display=="block") {
+	residues=document.getElementById("residues").value.trim();
+	if (residues == ""){
+		alert("You have not entered any residue numbers to be evaluated");
+		return false;
+	}
+	var csv_test = /^-?[0-9]+(,-?[0-9]+)*$/.test(residues);
+	if (!csv_test){
+		alert("Please provide list of residues as comma separated list");
+		return false;
+	}
+
+ }
+if ((document.getElementById("all_res").checked==false) && (document.getElementById("select_res").checked==false)) {
+	alert("Please select if you want to generate maps for all residues or select residues in the structure");
+		return false;
+}
+return true;
+}
+function fillExample() {
+document.getElementById("pdb_id").value = "1agy";
+document.getElementById("chain_id").value = "A";
+document.getElementById("all_res").checked=true;
+}
+</script>
+</head>
+<body>
+<div class="header">
+	<img src="hide_square.png" align="left" style="width:120px;height:120px;"/>
+	<img src="IISc_logo.png" align="right" style="width:120px;height:120px;"/>
+	<h2 style="color:#3399ff;">BORAM</h2>
+	<p style="font-size:25px;font-family: Verdana,Geneva, sans-serif; text-align:center;color:white;"><b style="color:#3399ff;">Bo</b>nd-parameter specific <b style="color:#3399ff;">Ra</b>machandran <b style="color:#3399ff;">M</b>aps </p>
+</div>
+<div class="topnav">
+	<a href="index.html">Home</a>
+	<a href="about.html">About BoRaM</a>
+	<a href="help.html">Help</a>
+	<a href="publication.html">Publication</a>
+	<a href="contact.html" style="float:right">Contact Us</a>
+</div>
+<div class="row">
+	<div class="rightcolumn">
+		<h3>BORAM - A web resource to view/generate residue-wise bond-parameter specific Ramachandran maps for super high-resolution protein structures </h3>
+		<p> Boram gives information on the conformational flexibility and accessibility associated with any non-proline residue by generating Ramachandran maps using the bond-parameters observed in the given protein structure. Such maps have been pre-generated and stored as a database for super high-resolution protein structures for quick retrieval. The user can also upload their own structure in PDB format and obtain the bond-parameter specific maps.<p>
+		<p> <br><br> Please read the <a href="about.html">About</a> and <a href="help.html">Help</a> pages before submitting a job below.</p><br><br>
+<form class="form1" name="mainform" method="post" id = "main_form" action="bond_param_results_db.py" onsubmit="return validateForm();" enctype = "multipart/form-data" >
+  		Enter 4-digit PDB ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="pdb_id" id="pdb_id"> &nbsp;&nbsp;<br><br> <b>OR</b> <br><br>
+  		Upload your structure in PDB format:&nbsp;&nbsp; <input type="file" name="pdb_file" id="pdb_file"> <br><br>
+  		Enter chain ID (required):&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="chain_id" id="chain_id"><br><br>
+		<div id ="radiooption">
+		<input type="radio" name="radiooption" id="all_res" onclick="proteinOption();"/>Generate maps for all residues in protein <br>
+		<input type="radio" name="radiooption" id="select_res" onclick="residueOption();"/>Generate Maps for select residues <br>
+		<div id="residue_option" style="display:none;">
+		Enter residue numbers in comma separated list: &nbsp;&nbsp; <input type="residues" name="residues" id="residues"> <br><br>
+		</div>
+  		<input class="button" type="submit" value="Submit">&nbsp;&nbsp;<input class="button" type="button" value="Try Example" onclick="return fillExample();">
+		</form>
+</div>
+
+</body>
+</html>
